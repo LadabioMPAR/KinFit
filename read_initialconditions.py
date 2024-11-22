@@ -1,6 +1,7 @@
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
+import numpy as np
 
 def select_sheet_path():
     """
@@ -42,3 +43,39 @@ def read_c0(path):
 
     return sheet
 
+
+
+def read_c0_columns(path):
+    """
+    Transforms an Excel sheet into separate NumPy arrays for each column.
+
+    :param path: Path to the Excel sheet containing the initial condition data.
+    :type path: str
+    :return: Tuple of arrays, each containing the data of one column from the specified sheet.
+    :rtype: tuple of numpy.ndarray
+    :raises FileNotFoundError: If the file is not found.
+    """
+    # Read the specified sheet from the Excel file
+    sheet = pd.read_excel(path, sheet_name='Condição Inicial')
+
+    # Drop the first column
+    sheet.drop(sheet.columns[0], axis=1, inplace=True)
+
+    # Reorder columns
+    sheet = sheet.iloc[:, [1, 0, 2, 3]]
+
+    # Convert to NumPy array
+    sheet_array = sheet.to_numpy()
+
+    # Split the array into individual columns
+    names = sheet_array[:, 0]
+    values = sheet_array[:, 1]
+    units = sheet_array[:, 2]
+    bool_est = sheet_array[:, 3]
+
+    return names, values, units, bool_est
+
+sheet = select_sheet_path()
+initial_conditions = read_c0(sheet)
+names, values, units, bool_est = read_c0_columns(sheet)
+print(bool_est)
