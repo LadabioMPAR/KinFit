@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+kinfit/__init__.py
+kinfit/interface.py
+kinfit/optimizer.py
+kinfit.egg-info/PKG-INFO
+kinfit.egg-info/SOURCES.txt
+kinfit.egg-info/dependency_links.txt
+kinfit.egg-info/requires.txt
+kinfit.egg-info/top_level.txt
+kinfit/analysis/plots.py
+kinfit/analysis/residuals.py
+kinfit/analysis/stats.py
+tests/test_basic.py

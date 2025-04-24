@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: kinfit
+Version: 0.1.0
+Summary: A library for kinetic parameter fitting in ODE systems, tailored for chemical engineering.
+Author-email: Seu Nome <seu.email@exemplo.com>
+License: MIT
+Project-URL: Homepage, https://github.com/LadabioMPAR/KinFit
+Project-URL: Source, https://github.com/LadabioMPAR/KinFit
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
+# KinFit
+teste
+
+# TO-DO
+- Adicionar opção para seleção de arquivo na máquina

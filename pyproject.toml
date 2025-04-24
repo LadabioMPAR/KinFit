@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kinfit"
+version = "0.1.0"
+authors = [
+    {name = "Daniel Souza", email = "daniel.souza@estudante.ufscar.br"},
+]
+description = "A library for kinetic parameter fitting in ODE systems, tailored for chemical kinnetic problems"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Programming Language :: Python :: 3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "black"]
+all = ["scipy", "numpy", "matplotlib", "pandas", "tomli"]
+
+[project.urls]
+Homepage = "https://github.com/LadabioMPAR/KinFit"
