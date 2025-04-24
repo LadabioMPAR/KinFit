@@ -22,6 +22,8 @@ classifiers = [
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov", "black"]
 all = ["scipy", "numpy", "matplotlib", "pandas", "tomli"]
+[project.optional-dependencies]
+docs = ["sphinx>=5.0","sphinx-rtd-theme>=1.0","myst-parser>=0.18"]
 
 [project.urls]
 Homepage = "https://github.com/LadabioMPAR/KinFit"

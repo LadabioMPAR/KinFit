@@ -19,17 +19,15 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'myst_parser',
-    'sphinx_gallery.gen_gallery'
+    'sphinx.ext.mathjax',
+    'myst_parser'
 ]
 
-# Sphinx Gallery configuration
-sphinx_gallery_conf = {
-    'examples_dirs': '../../examples',
-    'gallery_dirs': 'auto_examples',
-    'filename_pattern': '/example_',
-    'ignore_pattern': r'__init__\.py',
-}
+templates_path = ['_templates']
+exclude_patterns = []
+
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
 
 # Theme settings
 html_theme = 'sphinx_rtd_theme'
