@@ -1,5 +1,10 @@
 # KinFit
 teste
 
-# TO-DO
-- Adicionar opção para seleção de arquivo na máquina
+# Problemas resolvendo
+- Artur: Função plot e intervalo de confiança do modelo
+- Daniel: Integração da escolha de parâmetros a otimizar
+- Marcus: GUI
+- Renato: Import txt
+ 
+## Problemas a resolver
