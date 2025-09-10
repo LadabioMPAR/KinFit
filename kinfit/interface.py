@@ -20,6 +20,8 @@ class FitResult:
     message: str
     objective_value: float
     predictions: Dict[str, np.ndarray]
+    covariance_matrix: Optional[np.ndarray]
+    confidence_intervals: Optional[Dict[str, Dict[str, float]]]
 
 def create_model(
     ode_system: Callable,
@@ -116,7 +118,9 @@ def fit_kinetic_parameters() -> FitResult:
         success=result.success,
         message=result.message,
         objective_value=result.objective_value,
-        predictions=predictions
+        predictions=predictions,
+        covariance_matrix=result.covariance_matrix,
+        confidence_intervals=result.confidence_intervals
     )
 
 def plot_results(

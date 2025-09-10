@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.optimize import least_squares, dual_annealing
 from .model import KineticModel
+from scipy.stats import t
 
 @dataclass
 class OptimizationResult:
@@ -14,6 +15,8 @@ class OptimizationResult:
     success: bool
     message: str
     objective_value: float
+    covariance_matrix: Optional[np.ndarray]
+    confidence_intervals: Optional[Dict[str, Dict[str, float]]]
 
 class Optimizer:
     def __init__(self, name: str):
@@ -78,7 +81,56 @@ class LeastSquaresOptimizer(Optimizer):
             bounds=list(zip(*bounds)) if bounds else None,
             **self.config
         )
-        
+
+        # Prepara o dicionário de parâmetros ajustados
+        fitted_params = {name: p['value'] for name, p in model._parameters.items()}
+        fitted_params.update(dict(zip(param_names, result.x)))
+
+        # Inicializa todas as variáveis de resultado como None
+        dof, cov_matrix, corr_matrix = None, None, None
+        std_errors_dict, conf_intervals, conf_bands = None, None, None
+
+        if result.success:
+            # Equivalente a 'm' e 'n' no MATLAB
+            num_data_points = len(result.fun)
+            num_params = len(initial_guess)
+
+            # Equivalente a 'gl' no MATLAB
+            dof = num_data_points - num_params
+
+            if dof > 0:
+                try:
+                    # 1. Obter a Jacobiana ('X' no MATLAB)
+                    jacobian = result.jac
+
+                    # 2. Obter a Soma dos Quadrados dos Resíduos ('Fobjetivo' no MATLAB)
+                    ssr = 2 * result.cost
+
+                    # 3. Calcular a variância dos resíduos
+                    residual_variance = ssr / dof
+
+                    # 4. Calcular a matriz de covariância ('covar' no MATLAB)
+                    cov_matrix = np.linalg.pinv(jacobian.T @ jacobian) * residual_variance
+
+                    # 5. Calcular o desvio padrão ('dp') e o IC ('ic')
+                    std_errors = np.sqrt(np.diag(cov_matrix))
+                    alpha = 1.0 - 0.95  # Para 95% de confiança
+                    t_critical = t.ppf(1.0 - alpha / 2.0, df=dof)  # 't' no MATLAB
+
+                    std_errors_dict = {}
+                    conf_intervals = {}
+                    for i, param_name in enumerate(param_names):
+                        value = result.x[i]
+                        se = std_errors[i]
+                        std_errors_dict[param_name] = se
+                        conf_intervals[param_name] = {
+                            'ci_lower': value - t_critical * se,
+                            'ci_upper': value + t_critical * se
+                        }
+
+                except np.linalg.LinAlgError:
+                    print("Aviso: Não foi possível calcular as estatísticas (matriz singular).")
+
         # Prepara resultados
         opt_idx = 0
         fitted_params = {}
@@ -88,13 +140,16 @@ class LeastSquaresOptimizer(Optimizer):
                 opt_idx += 1
             else:
                 fitted_params[name] = param_data['value']
-        
+
         return OptimizationResult(
             parameters=fitted_params,
             success=result.success,
             message=result.message,
-            objective_value=result.cost
+            objective_value=result.cost,
+            covariance_matrix=cov_matrix,
+            confidence_intervals=conf_intervals
         )
+
 
 class SimulatedAnnealingOptimizer(Optimizer):
     def __init__(self):
