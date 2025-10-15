@@ -8,7 +8,8 @@ from kinfit import (
     load_experimental_data, 
     fit_kinetic_parameters, 
     plot_results,
-    set_optimizer  # Agora importado corretamente da interface
+    set_optimizer, 
+    processar_arquivo_texto # Agora importado corretamente da interface
 )
 
 # 1. Definir o sistema de EDOs
@@ -36,10 +37,7 @@ time_points = np.linspace(0, 10, 20)
 A_exp = np.exp(-0.3 * time_points)  # Dados com k=0.3
 B_exp = 1 - A_exp
 
-load_experimental_data(
-    time_points=time_points,
-    data={'A': A_exp, 'B': B_exp}
-)
+processar_arquivo_texto()
 
 # 4. Selecionar otimizador e ajustar parâmetros
 set_optimizer('leastsq')  # Ou 'annealing'
