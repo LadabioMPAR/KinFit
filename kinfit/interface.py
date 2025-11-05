@@ -186,7 +186,7 @@ def processar_arquivo_texto():
         # Processa de acordo com o formato detectado
         if formato == "csv":
             print("csv")
-            df = pd.read_csv(caminho_arquivo)
+            df = pd.read_csv(caminho_arquivo,header=[0,1])
         elif formato == "tsv":
             
             df = pd.read_csv(caminho_arquivo, sep='\t',header=[0,1])
