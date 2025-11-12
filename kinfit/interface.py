@@ -6,6 +6,8 @@ from typing import Dict, List, Callable, Optional, Union
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
+
+from pyparsing import col
 from .model import KineticModel
 from .optimizer import Optimizer, available_optimizers
 import pandas as pd
@@ -188,19 +190,24 @@ def processar_arquivo_texto():
         
         # Processa de acordo com o formato detectado
         if formato == "csv":
-            df = pd.read_csv(caminho_arquivo)
+            print("csv")
+            df = pd.read_csv(caminho_arquivo,header=[0,1])
         elif formato == "tsv":
-            df = pd.read_csv(caminho_arquivo, sep='\t')
+            
+            df = pd.read_csv(caminho_arquivo, sep='\t',header=[0,1])
+            
         elif formato == "fixed_width":
+            print("fixed_width")
             df = processar_largura_fixa(conteudo)
         else:
+            print("unknown")
             # Padrão: tentar ler como CSV com delimitador automático
-            df = pd.read_csv(caminho_arquivo, sep=None, engine='python')
-        
-        print(f"Arquivo '{os.path.basename(caminho_arquivo)}' processado com sucesso!")
-        print(f"Forma dos dados: {df.shape}")
+            df = pd.read_csv(caminho_arquivo, sep=None, engine='python',header=[0,1])
+
         tempo = df.iloc[:,0].to_numpy()
-        dados = {df.columns[col]: df[col].to_numpy() for col in df.columns[1:]}
+
+        dados = {col: df[col].to_numpy() for col in df.columns[1:]}
+
         load_experimental_data(tempo, dados)
 
 
