@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6253e89-fdc0-4c0c-84d9-e2bd9be1a340" name="Changes" comment="" />
+    <list default="true" id="b6253e89-fdc0-4c0c-84d9-e2bd9be1a340" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/teste_artur.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/KinFit.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KinFit.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/batch_reactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinfit/batch_reactor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinfit/optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinfit/optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinfit/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinfit/plots.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +32,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -35,10 +45,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.batch_reactor.executor&quot;: &quot;Run&quot;,
+    &quot;Python.plots.executor&quot;: &quot;Run&quot;,
     &quot;Python.read_initialconditions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teste_artur.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/artur/OneDrive/Documentos/GitHub/KinFit&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;artur--teste&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/artur/OneDrive/Documentos/IC Marcelo/Chroma-main/Chroma-main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -49,6 +62,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\artur\OneDrive\Documentos\GitHub\KinFit\kinfit" />
       <recent name="C:\Users\artur\OneDrive\Documentos\GitHub\KinFit" />
     </key>
   </component>
@@ -78,6 +92,14 @@
       <workItem from="1732298688398" duration="2629000" />
       <workItem from="1747331647094" duration="413000" />
       <workItem from="1752172096815" duration="11000" />
+      <workItem from="1758909725153" duration="1621000" />
+      <workItem from="1759339694234" duration="6820000" />
+      <workItem from="1760359540974" duration="117000" />
+      <workItem from="1761160953993" duration="369000" />
+      <workItem from="1761306899011" duration="1411000" />
+      <workItem from="1761759059675" duration="8390000" />
+      <workItem from="1762372026729" duration="2768000" />
+      <workItem from="1762976166843" duration="678000" />
     </task>
     <servers />
   </component>
@@ -85,6 +107,12 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/KinFit$batch_reactor.coverage" NAME="batch_reactor Coverage Results" MODIFIED="1762373972331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kinfit" />
     <SUITE FILE_PATH="coverage/KinFit$read_initialconditions.coverage" NAME="read_initialconditions Coverage Results" MODIFIED="1732300321911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KinFit$pytest_in_test_basic_py.coverage" NAME="pytest in test_basic.py Coverage Results" MODIFIED="1758741784359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/KinFit$optimizer.coverage" NAME="optimizer Coverage Results" MODIFIED="1758742667608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kinfit" />
+    <SUITE FILE_PATH="coverage/KinFit$teste_artur.coverage" NAME="teste_artur Coverage Results" MODIFIED="1759343228294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/KinFit$plots.coverage" NAME="plots Coverage Results" MODIFIED="1762373662582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kinfit" />
+    <SUITE FILE_PATH="coverage/KinFit$teste.coverage" NAME="teste Coverage Results" MODIFIED="1758741763081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

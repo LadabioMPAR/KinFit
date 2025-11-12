@@ -6,7 +6,7 @@ from typing import Dict, Callable, Optional
 from dataclasses import dataclass
 import numpy as np
 from scipy.optimize import least_squares, dual_annealing
-from .model import KineticModel
+from model import KineticModel
 from scipy.stats import t
 
 @dataclass
@@ -17,6 +17,7 @@ class OptimizationResult:
     objective_value: float
     covariance_matrix: Optional[np.ndarray]
     confidence_intervals: Optional[Dict[str, Dict[str, float]]]
+    confidence_bands: Optional[Dict[str, Dict[str, np.ndarray]]]
 
 class Optimizer:
     def __init__(self, name: str):
@@ -128,6 +129,28 @@ class LeastSquaresOptimizer(Optimizer):
                             'ci_upper': value + t_critical * se
                         }
 
+                    cov_matrix_pred = jacobian @ cov_matrix @ jacobian.T
+                    std_error_pred = np.sqrt(np.diag(cov_matrix_pred))
+                    final_predictions = model.solve_ode(fitted_params)
+                    conf_bands = {}  # Usará a variável inicializada como None
+                    current_pos = 0
+                    for var_name, exp_data in model._experimental_data.items():
+                        if var_name in final_predictions:
+                            num_points = len(exp_data)
+
+                            # A fatia correspondente do vetor de erro padrão da predição para a variável atual
+                            se_slice = std_error_pred[current_pos: current_pos + num_points]
+
+                            # Calcular a margem de erro (delta)
+                            delta = t_critical * se_slice
+
+                            # As bandas de confiança são a predição central +/- delta
+                            pred_slice = final_predictions[var_name]
+                            conf_bands[var_name] = {
+                                'ci_lower': pred_slice - delta,
+                                'ci_upper': pred_slice + delta
+                            }
+                            current_pos += num_points
                 except np.linalg.LinAlgError:
                     print("Aviso: Não foi possível calcular as estatísticas (matriz singular).")
 
@@ -147,7 +170,8 @@ class LeastSquaresOptimizer(Optimizer):
             message=result.message,
             objective_value=result.cost,
             covariance_matrix=cov_matrix,
-            confidence_intervals=conf_intervals
+            confidence_intervals=conf_intervals,
+            confidence_bands=conf_bands
         )
 
 
