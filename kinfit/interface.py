@@ -12,7 +12,7 @@ import pandas as pd
 from tkinter import Tk, filedialog
 import os
 import re
-
+from .confidence import conf_interval_jac
 # Variável global para o modelo atual
 _current_model = None
 _current_optimizer = "leastsq"
@@ -113,7 +113,12 @@ def fit_kinetic_parameters() -> FitResult:
     
     # Executa a otimização
     result = optimizer.optimize(_current_model)
-    
+
+    if hasattr(result, "jac") and hasattr(result, "fun"):
+        param_names = list(result.parameters.keys())
+        initial_guess = [result.parameters[name] for name in param_names]
+        result = conf_interval_jac(result, param_names, initial_guess)
+
     # Prepara resultados
     predictions = _current_model.solve_ode(result.parameters)
     

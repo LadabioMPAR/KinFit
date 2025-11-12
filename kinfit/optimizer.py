@@ -146,8 +146,6 @@ class LeastSquaresOptimizer(Optimizer):
             success=result.success,
             message=result.message,
             objective_value=result.cost,
-            covariance_matrix=cov_matrix,
-            confidence_intervals=conf_intervals
         )
 
 
