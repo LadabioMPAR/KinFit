@@ -2,9 +2,9 @@
 teste
 
 # Problemas resolvendo
-- Artur: Função plot e intervalo de confiança do modelo
-- Daniel:
+- Artur: Preparar tutorial
+- Daniel: Acertar as docstrings; Corrigir o autodoc; confidence.py
 - Marcus: GUI
-- Renato: Import txt
+- Renato: 
  
 ## Problemas a resolver
