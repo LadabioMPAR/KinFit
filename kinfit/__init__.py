@@ -8,6 +8,7 @@ from .interface import (
     load_experimental_data,
     plot_results,
     set_optimizer,
+    processar_arquivo_texto
 )
 
 from .optimizer import (
